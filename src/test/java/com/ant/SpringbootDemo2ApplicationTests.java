@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.Serializable;
@@ -50,7 +51,16 @@ public class SpringbootDemo2ApplicationTests {
 
     @Test
     public void contextLoads() {
-        System.out.println("=====================================");
+        stringRedisTemplate.opsForValue().set("k1", "v1");
+        String value = stringRedisTemplate.opsForValue().get("k1");
+        System.out.println("====================================="+value);
     }
-
+    @Test
+    public void test01() {
+        String key = "battcn:user:1";
+        String value = stringRedisTemplate.opsForValue().get("k1");
+        User user = (User) redisCacheTemplate.opsForValue().get(key);
+        System.out.println("value="+value);
+        System.out.println("user="+user.toString());
+    }
 }

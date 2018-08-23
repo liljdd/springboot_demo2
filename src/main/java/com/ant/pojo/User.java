@@ -15,6 +15,10 @@ public class User implements Serializable {
 
     private Date createdtime;
 
+    //默认构造不能少
+    public User() {
+    }
+
     public User(Integer uid, String username, Integer age, Date createdtime) {
         this.uid = uid;
         this.username = username;
