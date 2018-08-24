@@ -2,6 +2,9 @@ package com.ant.web;
 
 import com.ant.config.MyProperties1;
 import com.ant.config.MyProperties2;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RequestMapping("/properties")
 @RestController
+@Api(value = "PropertiesController相关的api", description = "properties文件注入与获取", tags = "1.2")
 public class PropertiesController {
     private static final Logger log = LoggerFactory.getLogger(PropertiesController.class);
 
@@ -34,6 +38,7 @@ public class PropertiesController {
     }
 
     @GetMapping("/1")
+    @ApiOperation(value = "value是啥", notes = "获取myProperties1")
     public MyProperties1 myProperties1() {
         log.info("=================================================================================================");
         log.info(myProperties1.toString());
@@ -42,6 +47,7 @@ public class PropertiesController {
     }
 
     @GetMapping("/2")
+    @ApiOperation(value = "value是啥？？？", notes = "获取myProperties2")
     public MyProperties2 myProperties2() {
         log.info("=================================================================================================");
         log.info(myProperties2.toString());

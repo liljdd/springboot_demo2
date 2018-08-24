@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.Serializable;
@@ -53,14 +52,23 @@ public class SpringbootDemo2ApplicationTests {
     public void contextLoads() {
         stringRedisTemplate.opsForValue().set("k1", "v1");
         String value = stringRedisTemplate.opsForValue().get("k1");
-        System.out.println("====================================="+value);
+        System.out.println("=====================================" + value);
     }
+
+    /**
+     * opsForValue：对应 String（字符串）
+     * opsForZSet：对应 ZSet（有序集合）
+     * opsForHash：对应 Hash（哈希）
+     * opsForList：对应 List（列表）
+     * opsForSet：对应 Set（集合）
+     * opsForGeo：对应 GEO（地理位置）
+     */
     @Test
     public void test01() {
         String key = "battcn:user:1";
         String value = stringRedisTemplate.opsForValue().get("k1");
         User user = (User) redisCacheTemplate.opsForValue().get(key);
-        System.out.println("value="+value);
-        System.out.println("user="+user.toString());
+        System.out.println("value=" + value);
+        System.out.println("user=" + user.toString());
     }
 }
