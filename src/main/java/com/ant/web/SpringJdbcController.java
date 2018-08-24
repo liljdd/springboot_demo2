@@ -1,5 +1,6 @@
 package com.ant.web;
 
+import com.alibaba.fastjson.JSONObject;
 import com.ant.pojo.Teacher;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -39,7 +40,9 @@ public class SpringJdbcController {
     public List<Teacher> queryTeachers() {
         // 查询所有用户
         String sql = "select * from teacher";
-        return jdbcTemplate.query(sql, new Object[]{}, new BeanPropertyRowMapper<>(Teacher.class));
+        List<Teacher> list = jdbcTemplate.query(sql, new Object[]{}, new BeanPropertyRowMapper<>(Teacher.class));
+        logger.info("============"+JSONObject.toJSONString(list));
+        return list;
     }
 
     /**

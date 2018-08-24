@@ -1,6 +1,9 @@
 package com.ant.pojo;
 
+import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -13,11 +16,14 @@ public class Teacher {
     private Boolean del;
 
     private Short age;
-
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JSONField(format = "yyyy-MM-dd")//JSON格式化
     private Date entrytime;
 
     private BigDecimal salary;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")//输入日期格式化
+    @JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")//输出日期格式化
     private Date createdtime;
 
     public Integer getId() {
